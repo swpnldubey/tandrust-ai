@@ -1,6 +1,7 @@
 # Tandrust AI 🏃
 
 > The AI fitness coach that starts from your doctor's visit — not your gym goals.
+>> git repo: https://github.com/swpnldubey/tandrust-ai.git
 
 ## Problem & Who It Affects
 
