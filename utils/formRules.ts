@@ -65,7 +65,7 @@ export function processFormRules(
       else if (angle < 40) feedback = { text: 'Wah! Ab dheere neeche ⬇️', isGood: true };
       else feedback = { text: 'Sahi ja raha hai! 🔥', isGood: true };
 
-      if (angle < 60 && state.phase === 'down') state.phase = 'up';
+      if (angle < 60 && (state.phase === 'down' || state.phase === 'standing')) state.phase = 'up';
       if (angle > 150 && state.phase === 'up') {
         state.phase = 'down';
         repDone = true;
@@ -80,7 +80,7 @@ export function processFormRules(
       else if (diff > 0.08) feedback = { text: 'Kandhe se upar mat jao! ⚠️', isGood: false };
       else feedback = { text: 'Perfect raise! ✅', isGood: true };
 
-      if (diff < -0.08 && state.phase === 'up') state.phase = 'down';
+      if (diff < -0.08 && (state.phase === 'up' || state.phase === 'standing')) state.phase = 'down';
       if (diff > 0 && state.phase === 'down') {
         state.phase = 'up';
         repDone = true;
