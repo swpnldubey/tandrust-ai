@@ -1,10 +1,5 @@
 import OpenAI from 'openai';
 
-const client = new OpenAI({
-  baseURL: 'https://neysa-deepseek-v4-flash.pipeshift.com/v1',
-  apiKey: process.env.NEYSA_API_KEY!,
-});
-
 function buildFallbackPlan(name: string, currentWeight: number, goalWeight: number, doctorNote: string, weightLossGoal: number) {
   const concern = doctorNote?.toLowerCase() || '';
   const hasBP = concern.includes('bp') || concern.includes('blood pressure');
@@ -125,6 +120,10 @@ Return ONLY this JSON (no markdown, no extra text):
 }`;
 
   try {
+    const client = new OpenAI({
+      baseURL: 'https://neysa-deepseek-v4-flash.pipeshift.com/v1',
+      apiKey: process.env.NEYSA_API_KEY!,
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const response = await (client.chat.completions.create as any)({
       model: 'deepseek-v4-flash',
